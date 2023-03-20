@@ -48,17 +48,6 @@ class ProductManager {
       }
 
 
-
-
-
-
-
-
-
-
-
-    // this.products.push(product);
-    // return this.products
   }
 
 
@@ -72,11 +61,18 @@ class ProductManager {
     }
    }
 }
-  const Productazo=new ProductManager();
-let productos=Productazo.addProducto("prodcuto1","descripto1",15,"url1","213",80)
- let producto2=Productazo.addProducto("prodcuto2","descripto2",18,"url2","213",70)
-// console.log(  Productazo.getProductById(1))
-console.log(  Productazo.getProducts())
+ const productmanager=new ProductManager();
+ //testing
+// let productos=Productazo.addProducto("prodcuto1","descripto1",15,"url1","213",80)
+//  let producto2=Productazo.addProducto("prodcuto2","descripto2",18,"url2","213",70)
+// // console.log(  Productazo.getProductById(1))
+console.log( productmanager.getProducts())
+productmanager.addProducto("productoprueba","este es un producto de prueba",123,"sin imagen","abc123",32)
+console.log( productmanager.getProducts())
+productmanager.addProducto("productoprueba","este es un producto de prueba",123,"sin imagen","abc124",32)
+console.log( productmanager.getProducts())
+console.log(  productmanager.getProductById(2))
+
 
 
 
