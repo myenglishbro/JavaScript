@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Producto 2",
+    "description": "Descripción del producto 1",
+    "price": 10,
+    "thumbnail": "ruta/imagen1.jpg",
+    "code": "COD1",
+    "stock": 5,
+    "id": 2
+  },
+  {
+    "title": "Producto 3",
+    "description": "Descripción del producto 1",
+    "price": 10,
+    "thumbnail": "ruta/imagen1.jpg",
+    "code": "COD1",
+    "stock": 5,
+    "id": 3
+  }
+]
