@@ -1,9 +1,13 @@
 
   
-  .bg-custom {
-    background-color: #ff9db9;
-    background-image: url("https://kardias.org/wp-content/uploads/2021/11/shutterstock_1576424071-673x465.jpg" );
-    background-repeat: repeat;
-    background-size: 50px;
-    box-shadow: 0 0 10px #ff9db9;
+ .bg-custom {
+  background-color: #ff9db9;
+  background-image: linear-gradient(rgba(255, 192, 203, 0.5), rgba(255, 192, 203, 0.5)), url("https://i.ibb.co/gFmhnn9/Fonde-de-pantalla-para-celular-ilustrado-arboles-de-navidad-rojo-y-verde.png");
+  background-repeat: repeat;
+  background-size: 50px;
+}
+
+  header {
+    text-shadow: 2px 2px 4px #000000;
+    color: #FFFFFF;
   }
