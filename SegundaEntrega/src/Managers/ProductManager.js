@@ -39,7 +39,7 @@ export default class  ProductManager
          products.push(product)
          try {
             await fs.promises.writeFile(path, JSON.stringify(products,null,'\t'));
-            return 'Producto Agregado'
+            return 'Producto se ha Agregado'
         } catch (error) {
              return error
         }
