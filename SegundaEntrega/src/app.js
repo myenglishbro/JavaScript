@@ -37,7 +37,7 @@ app.get('/products/:pid',async(req,res)=>{
 
     const {title,description,price,thumbnail,code,stock}=req.query;
     if(!title||!description||!price||!thumbnail||!code||!stock){
-         res.send('Falta datos del Producto')
+         res.send('Falta datos de el Producto')
          return
     }
 
