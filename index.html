@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css.css">
 </head>
 <body>
-  <header class="bg-secondary text-white py-5">
+  <audio src="./song.mp3" autoplay></audio>
+  <header class="bg-custom text-white py-5">
     <div class="container text-center">
       <h1 class="display-4">Para mi querida Xiomara ❤️</h1>
       <p class="h4 mb-0">Desde el corazón de tu izipapa 😘</p>
@@ -20,7 +21,10 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <p class="lead">Hola mi amor, espero que estés teniendo un día maravilloso lleno de gaaaa y de laputafama. Quiero que sepas que estoy muy agradecido de tenerte en mi vida y de que estemos juntos compartiendo momentos inolvidables. Eres la razón de mi felicidad y no puedo imaginar mi vida sin ti.</p>
+          <img src="https://i.ibb.co/kBGsVCX/277378317-970925623782967-5547080077889598648-n.jpg" alt="Imagen para Xiomara" class="img-fluid">
           <p class="lead">No te he hecho una carta a mano porque sé que es temporal, pero esta carta en línea será para toda la vida, para que siempre tengas algo que te recuerde lo mucho que te quiero y lo especial que eres para mí. 💕</p>
+
+          <p class="lead">Quiero que sepas que te quiero mucho y que espero que juntos cumplamos todos nuestros objetivos y sueños. Esta carta la hice diferente para que nunca me olvides y siempre la leas cuando estés triste. Estará en línea siempre y no tendrás que tenerla en papel, lo cual no es bueno para el medio ambiente. Ahora, estará para siempre, y espero que siempre te haga sentir amada y especial.</p>
           <p class="lead">Gracias por ser mi compañera, mi amiga, mi confidente y mi todo. Te quiero con todo mi corazón y no puedo esperar para seguir construyendo nuestro futuro juntos.</p>
           <p class="lead">Con todo mi amor, tu izipapa 😍</p>
         </div>
@@ -33,5 +37,8 @@
     </div>
   </footer>
   <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvX
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('.lead', { delay: 200, distance: '50px', duration: 1000, origin: 'bottom', });
+  </script>

@@ -1,41 +1,9 @@
-body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    margin: 0;
-    padding: 0;
+
+  
+  .bg-custom {
+    background-color: #ff9db9;
+    background-image: url("https://kardias.org/wp-content/uploads/2021/11/shutterstock_1576424071-673x465.jpg" );
+    background-repeat: repeat;
+    background-size: 50px;
+    box-shadow: 0 0 10px #ff9db9;
   }
-  
-  header {
-    text-align: center;
-    margin: 50px 0;
-  }
-  
-  h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  
-  .subtitulo {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 2px solid #333;
-    padding: 20px;
-  }
-  
-  footer {
-    margin-top: 50px;
-    text-align: center;
-  }
-  
-  p {
-    margin-bottom: 20px;
-  }
-  
-  
