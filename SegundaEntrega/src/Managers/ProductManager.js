@@ -25,7 +25,7 @@ export default class  ProductManager
         const product = products.find(pro => pro.id == idproduct);
       
         if (!product) {
-          return 'Producto no encontrado';
+          return 'El Producto no encontrado';
         }
       
         return product;
