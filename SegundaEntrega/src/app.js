@@ -12,41 +12,41 @@ app.listen(PORT,()=>{
 })
 
 
-app.get('/',async(req,res)=>{
-   const products= await productManager.getProducts();
+// app.get('/',async(req,res)=>{
+//    const products= await productManager.getProducts();
 
-   res.send(products)
-})
+//    res.send(products)
+// })
 
 app.get('/products/:pid',async(req,res)=>{
 
-    let pid = req.params.pid;
-    let product=await productManager.getProduct(pid);
+    const pid = req.params.pid;
+    const product=await productManager.getProduct(pid);
     res.send(product)
  })
 
- app.get('/delete/:pid',async(req,res)=>{
+//  app.get('/delete/:pid',async(req,res)=>{
 
-    let pid = req.params.pid;
-    let msg=await productManager.DeleteProduct(pid);
-    res.send(msg)
- })
+//     let pid = req.params.pid;
+//     let msg=await productManager.DeleteProduct(pid);
+//     res.send(msg)
+//  })
 
  
- app.get('/newquery',async(req,res)=>{
+//  app.get('/newquery',async(req,res)=>{
 
-    const {title,description,price,thumbnail,code,stock}=req.query;
-    if(!title||!description||!price||!thumbnail||!code||!stock){
-         res.send('Falta datos de el Producto')
-         return
-    }
+//     const {title,description,price,thumbnail,code,stock}=req.query;
+//     if(!title||!description||!price||!thumbnail||!code||!stock){
+//          res.send('Falta datos de el Producto')
+//          return
+//     }
 
-     const product={
-        title,description,price,thumbnail,code,stock
-     }
-     const msg=await productManager.AddProduct(product)
-     res.send(msg)
- })
+//      const product={
+//         title,description,price,thumbnail,code,stock
+//      }
+//      const msg=await productManager.AddProduct(product)
+//      res.send(msg)
+//  })
 
 
  
