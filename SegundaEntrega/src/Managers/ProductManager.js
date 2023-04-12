@@ -1,78 +1,74 @@
-import fs from 'fs';
-const path ='./src/files/DB.json';
+import { promises as fs } from 'fs';
+export default class ProductManager {
+  constructor() {
+    this.path = './src/files/products.json';
+  }
 
-export default class  ProductManager
- {
-    getProducts=async()=>{
-        if(fs.existsSync(path)){
-            const data= await fs.promises.readFile(path,'utf-8')
-            const products=JSON.parse(data);
-            return products
-         }
-         else{
-            return []
-         }
+
+  exist= async(id)=>{
+  const products=await this.readProducts();
+  return  products.find(prod=>prod.id===id)
+  }
+  readProducts=async()=>{
+    const products = await fs.readFile(this.path, 'utf-8');
+    return JSON.parse(products);
+  }
+  writeProduct=async(product)=>{
+    await fs.writeFile(this.path,JSON.stringify(product))
+
+  }
+
+  addProduct=async(product)=> {
+    let productsOld=await this.readProducts();
+    if(productsOld.length===0){
+      product.id=1
+
     }
-    getProductLimit = async (limit) => {
-        const products = await this.getProducts();
-        const limitedProducts = products.slice(0, limit);
-        return limitedProducts;
-      };
-      
+    else{
+      product.id=productsOld[productsOld.length-1].id +1
 
-      getProduct = async (idproduct) => {
-        const products = await this.getProducts();
-        const product = products.find(pro => pro.id == idproduct);
-      
-        if (!product) {
-          return 'El Producto no encontrado';
-        }
-      
-        return product;
-      }
-      
+    }
+    const productAll=[...productsOld,product]
+    await this.writeProduct(productAll)
+    return "Producto Agregado";
+  }
 
-    // AddProduct=async(product)=>{
-    //      const products= await this.getProducts();
-    //       let id=products[products.length-1].id;
-    //       product.id=++id;
-    //      products.push(product)
-    //      try {
-    //         await fs.promises.writeFile(path, JSON.stringify(products,null,'\t'));
-    //         return 'Producto se ha Agregado'
-    //     } catch (error) {
-    //          return error
-    //     }
-    // }
+  updateProduct=async(id,product)=> {
+    const productByiD=await this.exist(id)
+    if(!productByiD) return "Producto No Encontrado"
+    await this.deleteProduct(id)
+    const productOld=await this.readProducts();
+    const products=[{...product,id:id},...productOld]
+    await this.writeProduct(products)
+    return "Producto Actualizado"
 
-    // DeleteProduct=async(idproduct)=>{
-    //     const products = await this.getProducts();
-    //     const productIndex = products.findIndex(product =>{return product.id !== idproduct});
-    //     products.splice(productIndex,1)
-    //     try {
-    //         await fs.promises.writeFile(path, JSON.stringify(products,null,'\t'));
-    //         return 'Producto Eliminado'
-    //     } catch (error) {
-    //          return error
-    //     }
-    // }
+  }
 
-    // UpdateProduct=async(idproduct,title,description,price,thumbnail,code,stock)=>{
-    //     const products= await this.getProducts();
-    //     const productIndex = products.findIndex(product =>{
-    //         return product.id !== idproduct
-    //     });
-    //     products[productIndex].title=title;
-    //     products[productIndex].title=description;
-    //     products[productIndex].title=price;
-    //     products[productIndex].title=thumbnail;
-    //     products[productIndex].title=code;
-    //     products[productIndex].title=stock;
-    //     try {
-    //         await fs.promises.writeFile(path, JSON.stringify(products,null,'\t'));
-    //         return 'Producto Eliminado'
-    //     } catch (error) {
-    //          return error
-    //     }
-    // }
+
+  
+
+  getProducts=async()=> {
+    return await this.readProducts()
+  }
+
+  getProductsById=async(id)=> {
+
+    const productByiD=await this.exist(id)
+    if(!productByiD) return "Producto No eNCONTRADO"
+    return productByiD;
+  }
+
+  deleteProduct=async(id)=> {
+    const products=await this.readProducts();
+    let existProduct=products.some(prod=>prod.id===id)
+
+    if(existProduct) 
+   {
+    let filterProduct=products.filter(prod=>prod.id!=id)
+    await this.writeProduct(filterProduct)
+    return "Producto Eliminado"
+   }
+   return "Producto a Eliminar Inexistente"
+  }
 }
+

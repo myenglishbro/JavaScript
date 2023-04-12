@@ -1,0 +1,31 @@
+[
+    {
+        "id": 3,
+        "cantidad": 2
+    },
+    {
+        "id": "JswAGszYOcl_SDY1a4prv",
+        "products": [
+            {
+                "id": 3,
+                "cantidad": 1
+            }
+        ]
+    },
+    {
+        "id": "JswAGszYOcl_SDY1a4prv",
+        "products": []
+    },
+    {
+        "id": "7dlW57Ou_CSV1U9n8TT3H",
+        "products": []
+    },
+    {
+        "id": "i-gr_aer-C5bSGj28gEtq",
+        "products": []
+    },
+    {
+        "id": "fo-KGvqpjY7Q28Ps19S3k",
+        "products": []
+    }
+]
