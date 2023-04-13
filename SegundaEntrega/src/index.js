@@ -1,6 +1,6 @@
 import express from "express"
-import ProductRouter from "./router/product.routes.js"
-import CartRouter from "./router/carts.routes.js"
+import productRouter from "./router/product.routes.js"
+import cartRouter from "./router/carts.routes.js"
 
 
 const app=express()
@@ -9,8 +9,8 @@ const PORT=8080
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.use("/api/products",ProductRouter)
-app.use("/api/carts",CartRouter)
+app.use("/api/products",productRouter)
+app.use("/api/carts",cartRouter)
 
 
 app.listen(PORT,()=>{

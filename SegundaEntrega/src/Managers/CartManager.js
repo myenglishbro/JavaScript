@@ -79,7 +79,7 @@ export default class CartManager{
              else{
               let producto={
                 id: productId,
-                 stock:1
+                 quantity:1
               };
 
              productsInCart.push(producto)

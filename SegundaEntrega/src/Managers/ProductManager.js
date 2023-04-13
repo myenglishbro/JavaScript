@@ -18,20 +18,21 @@ export default class ProductManager {
 
   }
 
-  addProduct=async(product)=> {
-    let productsOld=await this.readProducts();
-    if(productsOld.length===0){
-      product.id=1
-
+  addProduct = async (product) => {
+    let productsOld = await this.readProducts();
+    if (productsOld.length === 0) {
+      product.id = 1;
+    } else {
+      product.id = productsOld[productsOld.length - 1].id + 1;
     }
-    else{
-      product.id=productsOld[productsOld.length-1].id +1
-
+    // Validar campos obligatorios
+    if (!product.title || !product.description || !product.price  || !product.code || !product.stock) {
+      return "Faltan campos obligatorios";
     }
-    const productAll=[...productsOld,product]
-    await this.writeProduct(productAll)
+    const productAll = [...productsOld, product];
+    await this.writeProduct(productAll);
     return "Producto Agregado";
-  }
+  };
 
   updateProduct=async(id,product)=> {
     const productByiD=await this.exist(id)
@@ -57,6 +58,19 @@ export default class ProductManager {
     if(!productByiD) return "Producto No eNCONTRADO"
     return productByiD;
   }
+
+  getProductsLimit=async(limit) =>{
+    const products = await this.readProducts();
+  
+    if (limit) {
+      return products.slice(0, limit);
+    } else {
+      return products;
+    }
+  }
+  
+
+
 
   deleteProduct=async(id)=> {
     const products=await this.readProducts();
