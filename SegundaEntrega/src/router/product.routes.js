@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ProductManager from "../Managers/ProductManager.js"
+import { uploader } from "../utils.js";
 
 const productRouter=Router()
 
@@ -24,8 +25,11 @@ productRouter.get("/",async(req,res)=>{
     res.send(await product.getProductsById(id))
   })
 
-  productRouter.post("/",async(req,res)=>{
+  productRouter.post("/",uploader.single('thumbnail'),async(req,res)=>{
   const newProduct=req.body
+  const filename=req.file.filename;
+  newProduct.thumbnail=`http://localhost:8080/images/${filename}`
+
   res.send(await product.addProduct(newProduct))
 })
 
