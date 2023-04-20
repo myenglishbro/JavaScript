@@ -1,8 +1,17 @@
-{{#each products}}
-
-<h2>{{this.tittle}}</h2>
-<p>{{this.description}}</p>
-<p>{{this.price}}</p>
-<p>{{this.stock}}</p>
-<p>{{this.code}}</p>
-{{/each}}
+<div class="card">
+  <div class="card-header">
+    <h1>Listas de Productos</h1>
+  </div>
+  <div class="card-body">
+    {{#each products}}
+      <div class="product">
+        <img src="{{this.thumbnail}}" alt="{{this.title}}">
+        <h2>{{this.tittle}}</h2>
+        <p>{{this.description}}</p>
+        <p>{{this.price}}</p>
+        <p>{{this.stock}}</p>
+        <p>{{this.code}}</p>
+      </div>
+    {{/each}}
+  </div>
+</div>
