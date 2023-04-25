@@ -10,6 +10,7 @@ import handlebars from 'express-handlebars';
 import { Server } from "socket.io";
 
 import __dirname from './utils.js';
+import ProductManager from "./Managers/ProductManager.js";
 
 
 const app=express()
@@ -36,12 +37,15 @@ const server=app.listen(PORT,()=>{
     console.log("Servidor Express Funcionando")
 })
 
+
+const product = new ProductManager();
+
 const io = new Server(server);
-const products=[]
 
 
-    io.on('connection',socket=>{
+    io.on('connection',async socket=>{
         console.log("cliente conectado")
+        const products = await product.getProducts();
 
         socket.emit('productos',products)
     })
