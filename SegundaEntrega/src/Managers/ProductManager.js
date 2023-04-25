@@ -50,6 +50,7 @@ export default class ProductManager {
 
   getProducts=async()=> {
     return await this.readProducts()
+    
   }
 
   getProductsById=async(id)=> {

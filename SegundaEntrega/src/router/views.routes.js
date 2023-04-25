@@ -5,9 +5,9 @@ const viewRouter=Router()
 
 const product = new ProductManager();
 
-viewRouter.get("/", async (req, res) => {
+viewRouter.get("/realtimeprod", async (req, res) => {
     const products = await product.getProducts();
-    res.render("home", { products });
+    res.render("realtimeprod", { products });
   });
 
 

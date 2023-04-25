@@ -22,12 +22,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 
-
-
-
-
-
-
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
@@ -42,17 +36,12 @@ const server=app.listen(PORT,()=>{
     console.log("Servidor Express Funcionando")
 })
 
+const io = new Server(server);
+const products=[]
 
-const socketServerIO = new Server(server);
 
-socketServerIO.on('connection', socket => {
-  console.log('Socket connected');
-  
-  socket.on('message', data => {
-    socketServerIO.emit('log', data);
-  });
-});
+    io.on('connection',socket=>{
+        console.log("cliente conectado")
 
-socketServerIO.on('error', (err) => {
-  console.log(`Socket error: ${err}`);
-});
+        socket.emit('productos',products)
+    })
