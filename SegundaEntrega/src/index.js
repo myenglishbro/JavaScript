@@ -48,4 +48,9 @@ const io = new Server(server);
         const products = await product.getProducts();
 
         socket.emit('productos',products)
+
+        socket.on('addProduct',async data=>{
+            console.log(data)
+           await product.addProduct(data)
+        })
     })

@@ -3,6 +3,57 @@
 <h2> Real Time Products </h2>
 <hr>
 </div>
+<form id="formProduct" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="title" class="form-label">Título:</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+        <div class="invalid-feedback">
+            Por favor ingresa un título válido.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Descripción:</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+        <div class="invalid-feedback">
+            Por favor ingresa una descripción válida.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="stock" class="form-label">Stock:</label>
+        <input type="number" class="form-control" id="stock" name="stock" required>
+        <div class="invalid-feedback">
+            Por favor ingresa un número de stock válido.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="thumbnail" class="form-label">Imagen:</label>
+        <input type="text" class="form-control" id="thumbnail" name="thumbnail" required>
+        <div class="invalid-feedback">
+            Por favor ingresa una URL de imagen válida.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Precio:</label>
+        <input type="number" class="form-control" id="price" name="price" required>
+        <div class="invalid-feedback">
+            Por favor ingresa un precio válido.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="code" class="form-label">Código:</label>
+        <input type="text" class="form-control" id="code" name="code" required>
+        <div class="invalid-feedback">
+            Por favor ingresa un código válido.
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+</form>
 
 <div>
     <ul id="list-products">

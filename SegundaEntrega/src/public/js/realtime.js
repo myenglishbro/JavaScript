@@ -1,4 +1,25 @@
 const socket = io();
+
+let form=document.getElementById("formProduct")
+
+form.addEventListener('submit',evt=>{
+  evt.preventDefault()
+  let title=form.elements.title.value
+  let description=form.elements.description.value
+
+  let stock=form.elements.title.value
+
+  let thumbnail=form.elements.title.value
+
+  let price=form.elements.title.value
+  let code=form.elements.title.value
+
+  console.log(title)
+  socket.emit('addProduct',{
+    title,description,stock,thumbnail,price,code
+  })
+  form.reset()
+})
 socket.on('productos',data=>{
   console.log(data)
 
