@@ -20,6 +20,21 @@ form.addEventListener('submit',evt=>{
   })
   form.reset()
 })
+
+
+document.getElementById("delete-btn").addEventListener("click",function(){
+  console.log("borrando")
+  const deleteidinput=document.getElementById("id-prod")
+  const deleteid=parseInt(deleteidinput.value);
+  socket.emit("deleteProduct",deleteid);
+  deleteidinput.value="";
+})
+
+
+
+
+
+
 socket.on('productos',data=>{
   console.log(data)
 

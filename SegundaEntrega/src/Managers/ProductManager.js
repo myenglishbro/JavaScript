@@ -75,7 +75,7 @@ export default class ProductManager {
 
   deleteProduct=async(id)=> {
     const products=await this.readProducts();
-    let existProduct=products.some(prod=>prod.id===id)
+    let existProduct=products.some(prod=>prod.id==id)
 
     if(existProduct) 
    {

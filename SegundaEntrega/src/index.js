@@ -53,4 +53,11 @@ const io = new Server(server);
             console.log(data)
            await product.addProduct(data)
         })
+
+        socket.on('deleteProduct', async data => {
+            console.log("ID del producto a eliminar: ", data);
+        
+            const deletedProduct = await product.deleteProduct(data);
+            console.log("Producto eliminado: ", deletedProduct);
+          });
     })
