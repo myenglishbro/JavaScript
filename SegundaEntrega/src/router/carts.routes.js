@@ -1,6 +1,6 @@
 import { Router } from "express";
 import CartManager from "../Managers/CartManager.js"
-import CartManagerMongo from "../Managers/cartmanagerMongo.js";
+import CartManagerMongo from "../Managers/CartManagerMongo.js";
 const cartRouter=Router()
 const cart=new CartManager
 const cartmanagermongo= new CartManagerMongo();
@@ -29,10 +29,18 @@ cartRouter.get('/', async(req, res) => {
 })
 
 
-cartRouter.get("/:cid",async(req,res)=>{
-    const cid=parseInt( req.params.cid)
-    res.send(await cart.getCartById(cid))
-  })
+
+
+  cartRouter.get('/:cid', async(req, res) => {
+    const cid = (req.params.cid);
+
+    const respuesta = await cartmanagermongo.getCart(cid);
+
+    res.status(respuesta.code).send({
+        status: respuesta.status,
+        message: respuesta.message
+    });
+});
 
   cartRouter.post("/:cid/products/:pid",async(req,res)=>{
 
@@ -50,5 +58,18 @@ cartRouter.get("/:cid",async(req,res)=>{
 
     //  res.send(await cart.addProductInCart(cartId,productId))
   })
+
+  cartRouter.delete('/:cid/product/:pid', async (req, res) => {
+  
+    const cid = req.params.cid;
+    const pid = req.params.pid;
+    
+    const result = await cartmanagermongo.deleteProductCart(cid, pid);
+    
+    res.status(result.code).send({
+        status: result.status,
+        message: result.message
+    });
+});
 
 export default cartRouter
