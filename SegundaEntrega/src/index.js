@@ -1,4 +1,5 @@
-import express from "express"
+import express from "express";
+import mongoose from "mongoose";
 import productRouter from "./router/product.routes.js"
 import cartRouter from "./router/carts.routes.js"
 
@@ -15,6 +16,10 @@ import ProductManager from "./Managers/ProductManager.js";
 
 const app=express()
 const PORT=8080
+const MONGO = 'mongodb+srv://bidabehere:bidabehere@cluster0.a5dcy.mongodb.net/?retryWrites=true&w=majority';
+
+mongoose.connect(MONGO)
+
 
 app.use(express.static(__dirname+'/public'));
 

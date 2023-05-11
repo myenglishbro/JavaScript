@@ -1,11 +1,18 @@
 import { Router } from "express";
 import CartManager from "../Managers/CartManager.js"
-
+import CartManagerMongo from "../Managers/CartManagerMongo.js";
 const cartRouter=Router()
 const cart=new CartManager
-
+const cartmanagermongo= new CartManagerMongo();
 cartRouter.post("/",async(req,res)=>{
-  res.send(await  cart.addCart())
+  // const respuesta=await CartManager.addCart();
+  const respuestaMongo=await cartmanagermongo.createCart()
+  response.status(respuesta.code).send({
+    status: respuesta.status,
+    message: respuesta.message
+});
+ 
+
 })
 
 cartRouter.get('/',async(req,res)=>{
