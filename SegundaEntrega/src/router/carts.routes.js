@@ -1,6 +1,6 @@
 import { Router } from "express";
 import CartManager from "../Managers/CartManager.js"
-import CartManagerMongo from "../Managers/CartManagerMongo.js";
+import CartManagerMongo from "../Managers/cartmanagerMongo.js";
 const cartRouter=Router()
 const cart=new CartManager
 const cartmanagermongo= new CartManagerMongo();

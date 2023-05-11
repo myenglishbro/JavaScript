@@ -1,15 +1,19 @@
 import { Router } from "express";
 import ProductManager from "../Managers/ProductManager.js"
-
+import ProductManagerMongo from "../Managers/productmanagerMongo.js";
 const productRouter=Router()
 
-const product = new ProductManager();
+// const product = new ProductManager();
+const productmanagerMongo= new ProductManagerMongo()
 
 
 
 productRouter.get("/", async (req, res) => {
-    const products = await product.getProducts();
-    res.render("home", { products });
+    const respuesta = await productmanagerMongo.getProducts();
+    res.status(respuesta.code).send({
+      status: respuesta.status,
+      message: respuesta.message
+  });
   });
 
   productRouter.get('/limit', async (req, res) => {
@@ -25,8 +29,15 @@ productRouter.get("/", async (req, res) => {
   })
 
   productRouter.post("/",async(req,res)=>{
-  const newProduct=req.body
-  res.send(await product.addProduct(newProduct))
+ 
+  const newProduct = req.body;
+
+  const respuesta = await productmanagerMongo.addProduct(newProduct);
+
+  res.status(respuesta.code).send({
+      status: respuesta.status,
+      message: respuesta.message
+  });
 })
 
 

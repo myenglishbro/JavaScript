@@ -38,16 +38,7 @@ export default class CartManagerMongo{
          }
         }
 
-    //      async getCarts(){
-        
-    //     const carts = await cartModel.find();
-
-    //     return {
-    //         code: 202,
-    //         status: 'Success',
-    //         message: carts
-    //     };
-    // };
+ 
 
     async getCarts(){
         
@@ -62,28 +53,20 @@ export default class CartManagerMongo{
 
      
          
-        // async createCart(){
-        //   const cart= await cartModel.create({});
-        //   return cart;
-        // }
-         
-        // addCart = async () => {
-        //     const carts = await this.readCarts();
-        //     let cartNew={
-        //       products:[]
-        //     }
-        //     if(carts.length===0){
-        //       cartNew.id=1;
-        //     }
-        //     else{
-        //       cartNew.id=carts[carts.length-1].id+1
-        //     }
+  async createCart(){
 
-        //     carts.push(cartNew);
-            
-        //     await this.writeCart(carts);
-        //     return "Carrito Agregado";
-        //   }
+    const cart = await cartModel.create({});
+    
+    return {
+        code: 202,
+        status: 'Success',
+        message: cart
+    };
+
+};
+
+         
+      
 
 
 
@@ -102,12 +85,7 @@ export default class CartManagerMongo{
           message:cart.products
          }
         }
-        // getCartById=async(id)=> {
-
-        //     const cartByiD=await this.exist(id)
-        //     if(!cartByiD) return "Carrito No eNCONTRADO"
-        //     return cartByiD;
-        //   }
+      
 
         updateCart=async(cid,pid)=>{
           const cart = await cartModel.findOne({_id:cid})
@@ -137,30 +115,7 @@ export default class CartManagerMongo{
           };
           }
 
-          // addProductInCart=async(cartId,productId)=>{
-          //     const carts=await this.getCart()
-          //     let cartFilter= carts.find(cart=>cart.id ===cartId)
-          //     const productsInCart= cartFilter.products
-          //     const producIndex= productsInCart.findIndex(p=>p.id==productId)
-          //    if (producIndex!==-1)
-          //    {
-          //     productsInCart[producIndex].quantity=productsInCart[producIndex].quantity+1;
-          //    }
-
-          //    else{
-          //     let producto={
-          //       id: productId,
-          //        quantity:1
-          //     };
-
-          //    productsInCart.push(producto)
-          //    }
-              
-          //    await this.writeCart(carts)
-             
-          // return  cartFilter;
-          //     }
-
+        
 
 
 

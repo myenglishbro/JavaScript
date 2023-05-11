@@ -1,8 +1,9 @@
-import { promises as fs } from 'fs';
-export default class ProductManager {
-  constructor() {
-    this.path = './src/files/products.json';
-  }
+
+import productModel from "../files/models/productModel.js";
+
+export default class ProductManagerMongo {
+
+
 
 
   exist= async(id)=>{
@@ -18,21 +19,35 @@ export default class ProductManager {
 
   }
 
-  addProduct = async (product) => {
-    let productsOld = await this.readProducts();
-    if (productsOld.length === 0) {
-      product.id = 1;
-    } else {
-      product.id = productsOld[productsOld.length - 1].id + 1;
-    }
-    // Validar campos obligatorios
-    if (!product.title || !product.description || !product.price  || !product.code || !product.stock) {
-      return "Faltan campos obligatorios";
-    }
-    const productAll = [...productsOld, product];
-    await this.writeProduct(productAll);
-    return "Producto Agregado";
+  addProduct = async (_product) => {
+    
+    const product = {
+            title: _product.title,
+            description: _product.description,
+             code: _product.code,
+            price: _product.price,
+            stock: _product.stock,
+            thumbnail: _product.thumbnail
+        };
+
+
+        try {
+
+          const result = await productModel.create(product)
+              return {
+                  code: 202,
+                  status: 'Success',
+                  message: `El producto ${product.title} ha sido agregado con éxito. Su ID interno es ${product.id}`
+              };
+      } catch (error) {
+          return {
+              code: 400,
+              status: 'Error',
+              message: `${error}`
+          };
+      };
   };
+  
 
   updateProduct=async(id,product)=> {
     const productByiD=await this.exist(id)
@@ -49,7 +64,14 @@ export default class ProductManager {
   
 
   getProducts=async()=> {
-    return await this.readProducts()
+    const products = await productModel.find();
+            
+       
+        return {
+            code: 202,
+            status: 'Success',
+            message: products
+        };
     
   }
 
