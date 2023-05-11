@@ -10,5 +10,5 @@ const cartSchema=mongoose.Schema({
 })
 
 
-const cartModel=mongoose.Model(cartColletion,cartSchema);
+const cartModel=mongoose.model(cartColletion,cartSchema);
 export default cartModel;

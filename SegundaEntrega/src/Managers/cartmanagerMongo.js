@@ -38,17 +38,29 @@ export default class CartManagerMongo{
          }
         }
 
-        async createCart(){
+    //      async getCarts(){
+        
+    //     const carts = await cartModel.find();
 
-          const cart = await cartModel.create({});
-          
-          return {
-              code: 202,
-              status: 'Success',
-              message: cart
-          };
-  
+    //     return {
+    //         code: 202,
+    //         status: 'Success',
+    //         message: carts
+    //     };
+    // };
+
+    async getCarts(){
+        
+      const carts = await cartModel.find();
+
+      return {
+          code: 202,
+          status: 'Success',
+          message: carts
       };
+  };
+
+     
          
         // async createCart(){
         //   const cart= await cartModel.create({});
@@ -97,7 +109,7 @@ export default class CartManagerMongo{
         //     return cartByiD;
         //   }
 
-        addProductInCart=async(cid,pid)=>{
+        updateCart=async(cid,pid)=>{
           const cart = await cartModel.findOne({_id:cid})
 
           const prodIndex = cart.products.findIndex(u=>u._id === pid);

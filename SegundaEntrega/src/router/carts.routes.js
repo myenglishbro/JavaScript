@@ -6,8 +6,8 @@ const cart=new CartManager
 const cartmanagermongo= new CartManagerMongo();
 cartRouter.post("/",async(req,res)=>{
   // const respuesta=await CartManager.addCart();
-  const respuestaMongo=await cartmanagermongo.createCart()
-  response.status(respuesta.code).send({
+  const respuesta=await cartmanagermongo.createCart()
+  res.status(respuesta.code).send({
     status: respuesta.status,
     message: respuesta.message
 });
@@ -15,10 +15,18 @@ cartRouter.post("/",async(req,res)=>{
 
 })
 
-cartRouter.get('/',async(req,res)=>{
-  res.send(await cart.getCart())
-})
+// cartRouter.get('/',async(req,res)=>{
+//   res.send(await cart.getCart())
+// })
+cartRouter.get('/', async(req, res) => {
 
+    const respuesta = await cartmanagermongo.getCarts();
+
+    res.status(respuesta.code).send({
+        status: respuesta.status,
+        message: respuesta.message
+    });
+})
 
 
 cartRouter.get("/:cid",async(req,res)=>{
@@ -27,9 +35,20 @@ cartRouter.get("/:cid",async(req,res)=>{
   })
 
   cartRouter.post("/:cid/products/:pid",async(req,res)=>{
-     const cartId=parseInt(req.params.cid)
-     const productId=parseInt(req.params.pid)
-     res.send(await cart.addProductInCart(cartId,productId))
+
+    const cid = req.params.cid;
+    const pid = req.params.pid;
+
+    const respuesta = await cartmanagermongo.updateCart(cid, pid);
+
+    res.status(respuesta.code).send({
+        status: respuesta.status,
+        message: respuesta.message
+    });
+    //  const cartId=parseInt(req.params.cid)
+    //  const productId=parseInt(req.params.pid)
+
+    //  res.send(await cart.addProductInCart(cartId,productId))
   })
 
 export default cartRouter
