@@ -12,7 +12,7 @@ import handlebars from 'express-handlebars';
 import { Server } from "socket.io";
 
 import __dirname from './utils.js';
-import ProductManager from "./Managers/ProductManager.js";
+import ProductManager from "./Dao/Managers/ProductManager.js";
 
 
 const app=express()

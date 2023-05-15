@@ -1,5 +1,5 @@
 
-import productModel from "../files/models/productModel.js";
+import productModel from "../models/productModel.js";
 
 export default class ProductManagerMongo {
 
