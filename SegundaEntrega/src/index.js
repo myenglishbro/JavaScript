@@ -17,7 +17,7 @@ import ProductManager from "./Managers/ProductManager.js";
 
 const app=express()
 const PORT=8080
-const MONGO = 'mongodb+srv://bidabehere:bidabehere@cluster0.a5dcy.mongodb.net/?retryWrites=true&w=majority';
+const MONGO = 'mongodb+srv://carlosapolayasanchez:sixx1am1@cluster0.cbayzpv.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO)
 
