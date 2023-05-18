@@ -120,7 +120,43 @@ async getCart(cid){
             };
         };
       
-           
+        async updateProductQuantity(cartId, productId, quantity) {
+            try {
+              const cart = await Cart.findById(cartId);
+              if (!cart) {
+                return {
+                  code: 404,
+                  status: 'Error',
+                  message: 'Carrito no encontrado'
+                };
+              }
+        
+              const product = cart.products.find(p => p._id.toString() === productId);
+              if (!product) {
+                return {
+                  code: 404,
+                  status: 'Error',
+                  message: 'Producto no encontrado en el carrito'
+                };
+              }
+        
+              product.quantity = quantity;
+              await cart.save();
+        
+              return {
+                code: 200,
+                status: 'Éxito',
+                message: 'Cantidad de producto actualizada exitosamente'
+              };
+            } catch (error) {
+              console.error(error);
+              return {
+                code: 500,
+                status: 'Error',
+                message: 'Error al actualizar la cantidad del producto en el carrito'
+              };
+            }
+          }
 
 
 }

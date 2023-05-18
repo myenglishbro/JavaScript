@@ -42,7 +42,7 @@ cartRouter.get('/', async(req, res) => {
     });
 });
 
-  cartRouter.post("/:cid/products/:pid",async(req,res)=>{
+  cartRouter.put("/:cid/products/:pid",async(req,res)=>{
 
     const cid = req.params.cid;
     const pid = req.params.pid;
@@ -71,5 +71,26 @@ cartRouter.get('/', async(req, res) => {
         message: result.message
     });
 });
+
+
+
+
+// cartRouter.put("/:cid/products/:pid", async (req, res) => {
+//   const cid = req.params.cid;
+//   const pid = req.params.pid;
+//   const quantity = req.body.quantity;
+
+//   try {
+//     const respuesta = await cartmanagermongo.updateProductQuantity(cid, pid, quantity);
+
+//     res.status(respuesta.code).send({
+//       status: respuesta.status,
+//       message: respuesta.message
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
+//   }
+// });
 
 export default cartRouter
