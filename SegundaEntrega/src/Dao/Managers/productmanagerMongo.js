@@ -48,18 +48,62 @@ export default class ProductManagerMongo {
       };
   };
   
+  updateProduct = async (id, product) => {
+    try {
+      const updatedProduct = await productModel.findByIdAndUpdate(id, product, { new: true });
+  
+      if (!updatedProduct) {
+        return "Producto no encontrado";
+      }
+  
+      return updatedProduct; // Devuelve el producto actualizado en lugar del mensaje
+    } catch (error) {
+      return "Error al actualizar el producto";
+    }
+  };
+  
+  
+  
+  // updateProduct=async(id,product)=> {
+  //   const productByiD=await this.exist(id)
+  //   if(!productByiD) return "Producto No Encontrado"
+  //   await this.deleteProduct(id)
+  //   const productOld=await this.readProducts();
+  //   const products=[{...product,id:id},...productOld]
+  //   await this.writeProduct(products)
+  //   return "Producto Actualizado"
 
-  updateProduct=async(id,product)=> {
-    const productByiD=await this.exist(id)
-    if(!productByiD) return "Producto No Encontrado"
-    await this.deleteProduct(id)
-    const productOld=await this.readProducts();
-    const products=[{...product,id:id},...productOld]
-    await this.writeProduct(products)
-    return "Producto Actualizado"
-
-  }
-
+  // }
+  // updateProduct = async (id, product) => {
+  //   const filter = { _id: id }; // Filtro para identificar el documento a actualizar
+  //   const update = { $set: product }; // Objeto que contiene los campos y valores a actualizar
+  
+  //   try {
+  //     const result = await productModel.updateOne(filter, update);
+  
+  //     if (result.nModified === 0) {
+  //       return "Producto no encontrado";
+  //     }
+  
+  //     return "Producto actualizado correctamente";
+  //   } catch (error) {
+  //     return "Error al actualizar el producto";
+  //   }
+  // };
+  updateProduct = async (id, product) => {
+    try {
+      const updatedProduct = await productModel.findByIdAndUpdate(id, product, { new: true });
+  
+      if (!updatedProduct) {
+        return "Producto no encontrado";
+      }
+  
+      return "Producto actualizado correctamente";
+    } catch (error) {
+      return "Error al actualizar el producto";
+    }
+  };
+  
 
   
 

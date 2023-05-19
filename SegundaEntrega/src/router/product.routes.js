@@ -18,14 +18,14 @@ productRouter.get("/", async (req, res) => {
 
   productRouter.get('/limit', async (req, res) => {
     const limit = parseInt(req.query.limit);
-    const products = await product.getProductsLimit(limit);
+    const products = await productmanagerMongo.getProductsLimit(limit);
     res.json(products);
   });
   
   
   productRouter.get("/:id",async(req,res)=>{
     const id= parseInt(req.params.id)
-    res.send(await product.getProductsById(id))
+    res.send(await productmanagerMongo.getProductsById(id))
   })
 
   productRouter.post("/",async(req,res)=>{
@@ -43,15 +43,29 @@ productRouter.get("/", async (req, res) => {
 
 productRouter.delete("/:id",async(req,res)=>{
     const id= parseInt(req.params.id)
-    res.send(await product.deleteProduct(id))
+    res.send(await productmanagerMongo.deleteProduct(id))
   })
 
-  productRouter.put("/:id",async(req,res)=>{
-    const id= parseInt(req.params.id)
-    const updateProduct=req.body;
+  // productRouter.put("/:id",async(req,res)=>{
+  //   const id= parseInt(req.params.id)
+  //   const updateProduct=req.body;
 
-    res.send(await product.updateProduct(id,updateProduct))
-  })
+  //   res.send(await productmanagerMongo.updateProduct(id,updateProduct))
+  // })
+  productRouter.put("/:id", async (req, res) => {
+    const id = req.params.id;
+    const updatedProduct = req.body;
+  
+    const respuesta = await productmanagerMongo.updateProduct(id, updatedProduct);
+  
+    res.status(200).send({
+      status: "Success",
+      message: "Producto actualizado correctamente",
+      updatedProduct
+    });
+  });
+  
+  
 
 export default productRouter
 

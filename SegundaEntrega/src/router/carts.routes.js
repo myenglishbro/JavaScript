@@ -59,7 +59,7 @@ cartRouter.get('/', async(req, res) => {
     //  res.send(await cart.addProductInCart(cartId,productId))
   })
 
-  cartRouter.delete('/:cid/product/:pid', async (req, res) => {
+  cartRouter.delete('/:cid/products/:pid', async (req, res) => {
   
     const cid = req.params.cid;
     const pid = req.params.pid;
@@ -71,8 +71,21 @@ cartRouter.get('/', async(req, res) => {
         message: result.message
     });
 });
+//eliminar todos los productos del carrito
 
+cartRouter.delete('/:cid', async (req, res) => {
+  const cid = req.params.cid;
 
+  const cart = await cartmanagermongo.getCart(cid);
+  if (!cart) {
+    return res.status(404).json({ error: 'Carrito no encontrado' });
+  }
+
+  cart.products = [];
+  await cartmanagermongo.updateCart(cid, cart.products);
+
+  res.status(200).json({ message: 'Productos eliminados exitosamente del carrito' });
+});
 
 
 // cartRouter.put("/:cid/products/:pid", async (req, res) => {
