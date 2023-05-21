@@ -6,9 +6,10 @@ const productColletion="products";
 const productSchema=mongoose.Schema({
     title:String,
     description:String,
+    price: Number,
+
     stock: Number,
     thumbnail: String,
-    price: Number,
     code: String
   
 })

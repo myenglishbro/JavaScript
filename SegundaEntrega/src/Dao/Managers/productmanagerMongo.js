@@ -5,108 +5,6 @@ export default class ProductManagerMongo {
 
 
 
-
-  exist= async(id)=>{
-  const products=await this.readProducts();
-  return  products.find(prod=>prod.id===id)
-  }
-  readProducts=async()=>{
-    const products = await fs.readFile(this.path, 'utf-8');
-    return JSON.parse(products);
-  }
-  writeProduct=async(product)=>{
-    await fs.writeFile(this.path,JSON.stringify(product))
-
-  }
-
-  addProduct = async (_product) => {
-    
-    const product = {
-            title: _product.title,
-            description: _product.description,
-             code: _product.code,
-            price: _product.price,
-            stock: _product.stock,
-            thumbnail: _product.thumbnail
-        };
-
-
-        try {
-
-          const result = await productModel.create(product)
-              return {
-                  code: 202,
-                  status: 'Success',
-                  message: `El producto ${product.title} ha sido agregado con éxito. Su ID interno es ${product.id}`
-              };
-      } catch (error) {
-          return {
-              code: 400,
-              status: 'Error',
-              message: `${error}`
-          };
-      };
-  };
-  
-  updateProduct = async (id, product) => {
-    try {
-      const updatedProduct = await productModel.findByIdAndUpdate(id, product, { new: true });
-  
-      if (!updatedProduct) {
-        return "Producto no encontrado";
-      }
-  
-      return updatedProduct; // Devuelve el producto actualizado en lugar del mensaje
-    } catch (error) {
-      return "Error al actualizar el producto";
-    }
-  };
-  
-  
-  
-  // updateProduct=async(id,product)=> {
-  //   const productByiD=await this.exist(id)
-  //   if(!productByiD) return "Producto No Encontrado"
-  //   await this.deleteProduct(id)
-  //   const productOld=await this.readProducts();
-  //   const products=[{...product,id:id},...productOld]
-  //   await this.writeProduct(products)
-  //   return "Producto Actualizado"
-
-  // }
-  // updateProduct = async (id, product) => {
-  //   const filter = { _id: id }; // Filtro para identificar el documento a actualizar
-  //   const update = { $set: product }; // Objeto que contiene los campos y valores a actualizar
-  
-  //   try {
-  //     const result = await productModel.updateOne(filter, update);
-  
-  //     if (result.nModified === 0) {
-  //       return "Producto no encontrado";
-  //     }
-  
-  //     return "Producto actualizado correctamente";
-  //   } catch (error) {
-  //     return "Error al actualizar el producto";
-  //   }
-  // };
-  updateProduct = async (id, product) => {
-    try {
-      const updatedProduct = await productModel.findByIdAndUpdate(id, product, { new: true });
-  
-      if (!updatedProduct) {
-        return "Producto no encontrado";
-      }
-  
-      return "Producto actualizado correctamente";
-    } catch (error) {
-      return "Error al actualizar el producto";
-    }
-  };
-  
-
-  
-
   getProducts=async()=> {
     const products = await productModel.find();
             
@@ -119,37 +17,58 @@ export default class ProductManagerMongo {
     
   }
 
-  getProductsById=async(id)=> {
-
-    const productByiD=await this.exist(id)
-    if(!productByiD) return "Producto No eNCONTRADO"
-    return productByiD;
-  }
-
-  getProductsLimit=async(limit) =>{
-    const products = await this.readProducts();
   
-    if (limit) {
-      return products.slice(0, limit);
-    } else {
-      return products;
+  async addProduct(_product) {
+    const product = {
+      title: _product.title,
+      description: _product.description,
+      price: _product.price,
+      stock: _product.stock,
+      thumbnail: _product.thumbnail,
+      code: _product.code
+    };
+  
+    try {
+      const createdProduct = await productModel.create(product);
+      return {
+        code: 202,
+        status: 'Success',
+        message: `El producto ${createdProduct.title} ha sido agregado con éxito. Su ID interno es ${createdProduct._id}`
+      };
+    } catch (error) {
+      return {
+        code: 400,
+        status: 'Error',
+        message: `${error}`
+      };
+    }
+  };
+  
+  async updateProduct(productId, updatedData) {
+    try {
+      const updatedProduct = await productModel.findByIdAndUpdate(productId, updatedData, { new: true });
+  
+      if (updatedProduct) {
+        return {
+          code: 202,
+          status: 'Success',
+          message: `El producto con ID ${productId} ha sido actualizado exitosamente.`
+        };
+      } else {
+        return {
+          code: 404,
+          status: 'Error',
+          message: `No se encontró un producto con ID ${productId}.`
+        };
+      }
+    } catch (error) {
+      return {
+        code: 400,
+        status: 'Error',
+        message: `${error}`
+      };
     }
   }
   
-
-
-
-  deleteProduct=async(id)=> {
-    const products=await this.readProducts();
-    let existProduct=products.some(prod=>prod.id==id)
-
-    if(existProduct) 
-   {
-    let filterProduct=products.filter(prod=>prod.id!=id)
-    await this.writeProduct(filterProduct)
-    return "Producto Eliminado"
-   }
-   return "Producto a Eliminar Inexistente"
-  }
 }
 
