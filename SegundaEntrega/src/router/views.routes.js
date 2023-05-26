@@ -1,6 +1,9 @@
 import { Router } from "express";
 import ProductManager from "../Dao/Managers/productmanagerMongo.js"
+
+import CartModel from "../Dao/models/cartModel.js";
 import productModel from "../Dao/models/productModel.js";
+
 const viewRouter=Router()
 
 const product = new ProductManager();
@@ -19,6 +22,22 @@ viewRouter.get("/products", async (req, res) => {
 })
 
 });
+viewRouter.get('/carts/:cid', async (req, res) => {
+  const cid = req.params.cid;
+  try {
+    const cart = await CartModel.findById(cid).populate('products.product');
+    if (!cart) {
+      return res.status(404).json({ error: 'Carrito no encontrado' });
+    }
+    const products = cart.products.map((item) => item.product.toObject()); // Convertir cada producto a un objeto plano
+
+    res.render('cart', { cart: cart.toObject(), products });
+  } catch (error) {
+    res.status(500).json({ status: 'Error', message: 'Error al obtener el carrito' });
+  }
+});
+
+
 
 
 viewRouter.get("/realtimeprod", async (req, res) => {

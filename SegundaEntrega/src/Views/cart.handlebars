@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Carrito</h1>
+  </div>
+  <div class="card-body">
+    <h2>Productos en el carrito:</h2>
+{{#each products}}
+  <div class="product">
+    <img src="{{thumbnail}}" alt="{{title}}">
+    <h3>{{title}}</h3>
+    <p>{{description}}</p>
+    <p>Precio: {{price}}</p>
+    <p>Cantidad: {{../quantity}}</p>
+  </div>
+{{/each}}
