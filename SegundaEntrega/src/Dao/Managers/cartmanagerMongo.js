@@ -50,16 +50,17 @@ export default class CartManagerMongo {
         };
       }
   
-      const prodIndex = cart.products.findIndex(u => u._id === pid);
+      const product = cart.products.find(p => p.product.toString() === pid);
   
-      if (prodIndex === -1) {
-        const product = {
-          _id: pid,
+      if (!product) {
+        // Si el producto no existe en el carrito, lo agregamos con cantidad 1
+        cart.products.push({
+          product: pid,
           quantity: 1
-        };
-        cart.products.push(product);
+        });
       } else {
-        cart.products[prodIndex].quantity += 1;
+        // Si el producto ya existe en el carrito, incrementamos la cantidad en 1
+        product.quantity += 1;
       }
   
       await cart.save();
@@ -77,6 +78,7 @@ export default class CartManagerMongo {
       };
     }
   }
+  
   
 
   async deleteAllProducts(cid) {
