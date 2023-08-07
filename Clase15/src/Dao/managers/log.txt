@@ -1,0 +1,17 @@
+
+ Fecha:10/5/2023- Hora:13:20:38- Metodo:GET
+ Fecha:10/5/2023- Hora:13:20:48- Metodo:GET
+ Fecha:10/5/2023- Hora:13:22:00- Metodo:POST
+ Fecha:11/5/2023- Hora:00:41:00- Metodo:Alta usuario
+ Fecha:11/5/2023- Hora:00:41:56- Metodo:Alta usuario
+ Fecha:11/5/2023- Hora:00:43:23- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:43:57- Metodo:GET
+ Fecha:11/5/2023- Hora:00:45:31- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:49:29- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:50:17- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:50:58- Metodo:GET
+ Fecha:11/5/2023- Hora:00:51:44- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:52:11- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:54:04- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:54:57- Metodo:Consulta todos los usuarios
+ Fecha:11/5/2023- Hora:00:55:05- Metodo:Consulta un solo usuario
